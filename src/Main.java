@@ -9,22 +9,10 @@ public class Main {
         return Processes;
     }
 
-    private static double getRandomDouble(int minRange, int maxRange) {
-        Random randGen = new Random();
-        return minRange + (maxRange - minRange) * randGen.nextDouble();
-    }
-
     private static void generateProcesses(int N) {
         for(int i = 0; i < N; i++)
             Processes.add(new Process());
-
         Processes.sort(new sortProcess());
-        int t = 0;
-        for (Process p: Processes){
-            t += p.execTime;
-            System.out.println(p.toString());
-        }
-        System.out.println("T--> " + t);
     }
 
     public static void main(String[] args) {
@@ -38,6 +26,7 @@ public class Main {
             generateProcesses(N);
             rr = new RoundRobin(q, Processes);
             rr.run();
+            Processes = rr.getProcesses();
         }
     }
 }

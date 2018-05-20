@@ -8,25 +8,45 @@ public class RoundRobin {
 
     RoundRobin(int Quantum, ArrayList<Process> processes) {
         this.Quantum = Quantum;
-        this.clone = processes;
-        this.Processes = processes;
+        this.clone = new ArrayList<>(processes);
+        this.Processes = new ArrayList<>(processes);
         totalExec = 0.0;
     }
 
+    private boolean checkZero() {
+        for(Process p: clone) {
+            if(p.execTime != 0) return false;
+        }
+        return true;
+    }
+
     public void run() {
-        while(!clone.isEmpty()) {
-            for(int i = 0; i < clone.size(); i++) {
-                Process p = clone.get(i);
-                if(p.execTime < this.Quantum) {
-                    this.totalExec += p.execTime;
+        for(Process p: clone) {
+            System.out.println(p.toString());
+        }
+        while (!checkZero()) {
+            for (Process p: clone) {
+                if(p.execTime == 0) continue;
+                if(p.execTime < Quantum) {
+                    totalExec += p.execTime;
                     p.execTime = 0;
-                    clone.remove(p);
+                    p.totalExecTime = totalExec - p.arrivalTime;
+                    p.waitTime = p.totalExecTime - p.execTime;
                 } else {
-                    this.totalExec += this.Quantum;
-                    p.execTime -= this.Quantum;
+                    totalExec += Quantum;
+                    p.execTime -= Quantum;
+                    p.totalExecTime = totalExec;
                 }
             }
         }
-        System.out.println(this.totalExec);
+
+        System.out.println("EXEC | CPU | TOTAL | ESPERA");
+        for(Process p: clone) {
+            System.out.println(p.toString());
+        }
+    }
+
+    public ArrayList<Process> getProcesses() {
+        return this.Processes;
     }
 }

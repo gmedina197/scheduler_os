@@ -7,18 +7,18 @@ public class Process {
     public double totalExecTime;
 
     Process() {
-        execTime = this.pickRandom(100);
-        arrivalTime = this.pickRandom(20);
+        execTime = getRandomDouble(1,10);
+        arrivalTime = getRandomDouble(1,5);
         waitTime = 0.0;
     }
 
-    private int pickRandom(int bound) {
-        Random r = new Random();
-        return Math.abs(r.nextInt(bound));
+    private static int getRandomDouble(int minRange, int maxRange) {
+        Random randGen = new Random();
+        return (int)(minRange + (maxRange - minRange) * randGen.nextDouble());
     }
 
     @Override
     public String toString() {
-        return "<" + arrivalTime + ", " + execTime + ">";
+        return arrivalTime + "     " + execTime+ "     " + totalExecTime + "     " + waitTime;
     }
 }
