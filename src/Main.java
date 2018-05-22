@@ -12,6 +12,7 @@ public class Main {
     private static void generateProcesses(int N) {
         for(int i = 0; i < N; i++)
             Processes.add(new Process());
+        Processes.sort(new sortProcess());
     }
 
     public static void main(String[] args) {
@@ -23,7 +24,6 @@ public class Main {
             N = Integer.parseInt(args[1]);
             q = Integer.parseInt(args[2]);
             generateProcesses(N);
-            Processes.sort(new sortProcess());
             rr = new RoundRobin(q, Processes);
             rr.run();
             Processes = rr.getProcesses();

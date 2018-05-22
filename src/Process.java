@@ -1,17 +1,17 @@
 import java.util.Random;
 
 public class Process {
-    public double execTimeOriginal;
-    public double execTime;
-    public double arrivalTime;
-    public double waitTime;
-    public double totalExecTime;
+    public int execTimeOriginal;
+    public int execTime;
+    public int arrivalTime;
+    public int waitTime;
+    public int totalExecTime;
 
     Process() {
         execTimeOriginal = getRandomDouble(1,10);
         execTime = execTimeOriginal;
         arrivalTime = getRandomDouble(1,5);
-        waitTime = 0.0;
+        waitTime = 0;
     }
 
     private static int getRandomDouble(int minRange, int maxRange) {

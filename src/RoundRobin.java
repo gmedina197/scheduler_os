@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class RoundRobin {
     private int Quantum;
     private ArrayList<Process> Processes;
-    private double totalExec;
+    private int totalExec;
 
     RoundRobin(int Quantum, ArrayList<Process> processes) {
         this.Quantum = Quantum;
