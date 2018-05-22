@@ -1,13 +1,15 @@
 import java.util.Random;
 
 public class Process {
+    public double execTimeOriginal;
     public double execTime;
     public double arrivalTime;
     public double waitTime;
     public double totalExecTime;
 
     Process() {
-        execTime = getRandomDouble(1,10);
+        execTimeOriginal = getRandomDouble(1,10);
+        execTime = execTimeOriginal;
         arrivalTime = getRandomDouble(1,5);
         waitTime = 0.0;
     }
@@ -19,6 +21,6 @@ public class Process {
 
     @Override
     public String toString() {
-        return arrivalTime + "     " + execTime+ "     " + totalExecTime + "     " + waitTime;
+        return arrivalTime + "\t\t" + execTimeOriginal+ "\t\t" + totalExecTime + "\t\t" + waitTime;
     }
 }
